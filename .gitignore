@@ -1,0 +1,7 @@
+pki/ca
+pki/certs/
+pki/crl
+pki/*.jks
+pki/*.pem
+pki/*.p12
+pki/*.csr

@@ -1,0 +1,2 @@
+client:
+  http_auth: admin:admin

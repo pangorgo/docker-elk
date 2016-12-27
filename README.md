@@ -1,4 +1,4 @@
-# Docker ELK stack
+# Docker ELK stack + sarchguard
 
 [![Join the chat at https://gitter.im/deviantony/docker-elk](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/deviantony/docker-elk?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
@@ -44,6 +44,20 @@ For example on Redhat and CentOS, the following will apply the proper context:
 ```
 
 # Usage
+
+First you need to generate bunch of certificates and stuff for searchguard. Dedicated dir `pki` is a place where scripts for certs generation lives (stolen from official searchguard repo).
+
+This command will:
+- generate root ca
+- generate certificates for elasticsearch and put them into truststre, keystore (Java specific cert store things)
+- generate two sample client certs
+- copy elasticserach keystore, truststore into elasticserach config dir (to be mounted into container)
+- copy root certificate into kibana dir (to be mounted into container)
+
+```bash
+$ cd pki
+$ ./init.sh
+```
 
 Start the ELK stack using *docker-compose*:
 
@@ -206,3 +220,9 @@ elasticsearch:
 ```
 
 This will store elasticsearch data inside `/path/to/storage`.
+
+# Curator
+
+## What is curator?
+
+Curator is a command line tool to query elasticsearch localy. For convienince it is installed in logtash container
